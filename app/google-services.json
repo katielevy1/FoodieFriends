@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1007730214170",
+    "firebase_url": "https://foodiefriends-eabe4.firebaseio.com",
+    "project_id": "foodiefriends-eabe4",
+    "storage_bucket": "foodiefriends-eabe4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1007730214170:android:3f9235f36fd77e45",
+        "android_client_info": {
+          "package_name": "com.foodiefriends.klevy1.foodiefriends"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1007730214170-svisakuruf46ks3ks9pn6k4o0lmse6ho.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.foodiefriends.klevy1.foodiefriends",
+            "certificate_hash": "04834e89b90e8795320bad26f809068bc10f667c"
+          }
+        },
+        {
+          "client_id": "1007730214170-r45gqp9e6et53u73msjg7og6dkf2jo66.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDvomF1ZRrlA_g47H-A5B44a3F4brBKv2A"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1007730214170-r45gqp9e6et53u73msjg7og6dkf2jo66.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">FoodieFriends</string>
+    <string name="home">Home</string>
+    <string name="my_profile">My Profile</string>
+    <string name="explore">Explore</string>
+    <string name="settings">Settings</string>
+    <string name="foodie_friends">Foodie Friends</string>
+    <string name="sign_in">Sign In</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+</resources>
