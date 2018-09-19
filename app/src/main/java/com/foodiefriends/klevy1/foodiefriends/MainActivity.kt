@@ -4,6 +4,7 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
+import android.support.v4.app.Fragment
 import android.util.Log
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
@@ -37,6 +38,8 @@ class MainActivity : AppCompatActivity() {
         // Setup toolbar on UI
         setSupportActionBar(toolbar)
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+//        val fragment : Fragment = RestaurantListFragment()
+//        this.supportFragmentManager.beginTransaction().replace(R.id.container_id, fragment).commit()
 
 
     }

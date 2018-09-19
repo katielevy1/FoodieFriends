@@ -18,11 +18,15 @@ tools:context=".MainActivity">
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar" />
-    <fragment
-        android:name="com.foodiefriends.klevy1.foodiefriends.RestaurantListFragment"
-        android:id="@+id/restaurant_list_fragment"
+    <RelativeLayout
+        android:id="@+id/container_id"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+    <!--<fragment-->
+        <!--android:name="com.foodiefriends.klevy1.foodiefriends.RestaurantListFragment"-->
+        <!--android:id="@+id/restaurant_list_fragment"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent" />-->
 
 </LinearLayout>
 

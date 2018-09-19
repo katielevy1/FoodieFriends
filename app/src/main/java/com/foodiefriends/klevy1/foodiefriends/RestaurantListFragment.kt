@@ -1,30 +1,26 @@
 package com.foodiefriends.klevy1.foodiefriends
 
-import android.app.Application
-import android.app.Fragment
 import android.os.Bundle
+import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Adapter
 import android.widget.TextView
 
 class RestaurantListFragment : Fragment() {
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup, savedInstanceState: Bundle): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val viewManager = LinearLayoutManager(activity)
-        val viewAdapter = MyAdapter(arrayOf("place 1", "place 2"))
+        val data : Array<String> = arrayOf("place 1", "place 2")
+        val viewAdapter = MyAdapter(data)
         val view = inflater.inflate(R.layout.restaurant_list_fragment, container, false)
         val recyclerView = view.findViewById<RecyclerView>(R.id.restaurant_list_recycler_view).apply {
             setHasFixedSize(true)
             layoutManager = viewManager
             adapter = viewAdapter
-
         }
         return view
-
-
     }
 }
 
