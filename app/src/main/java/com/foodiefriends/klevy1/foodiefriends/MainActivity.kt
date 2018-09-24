@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -35,6 +37,16 @@ class MainActivity : AppCompatActivity() {
             mUsername = mFirebaseUser?.displayName
         }
 
+        // listener to take user back to sign-in screen
+        mAuth.addAuthStateListener { firebaseAuth ->
+            val firebaseUser = firebaseAuth.currentUser
+            if (firebaseUser == null) {
+                // launch sign in activity
+                startActivity(Intent(this, SignInActivity::class.java))
+                finish()
+            }
+        }
+
         // Setup toolbar on UI
         setSupportActionBar(toolbar)
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
@@ -61,6 +73,21 @@ class MainActivity : AppCompatActivity() {
         false
     }
 
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        menuInflater.inflate(R.menu.main_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when(item.itemId) {
+            R.id.action_sign_out -> {
+                FirebaseAuth.getInstance().signOut()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
 
     // Takes email address and password, validates them, and then creates a new user
     fun createAccount(email : String, password : String) {
