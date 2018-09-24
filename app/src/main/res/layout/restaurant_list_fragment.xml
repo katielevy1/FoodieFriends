@@ -4,6 +4,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android" >
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Fragment"
+        android:textAlignment="center"/>
     <android.support.v7.widget.RecyclerView
         android:id="@+id/restaurant_list_recycler_view"
         android:scrollbars="vertical"

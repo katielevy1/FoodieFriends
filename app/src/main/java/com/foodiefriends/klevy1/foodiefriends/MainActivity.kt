@@ -89,6 +89,11 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    fun getData() : List<String> {
+        // get restaurant data from firebase database here
+        return listOf("Main Restaurant 1", "Main Restaurant 2", "Main Restaurant 3", "Main Restaurant 4", "Main Restaurant 5")
+    }
+
     // Takes email address and password, validates them, and then creates a new user
     fun createAccount(email : String, password : String) {
         mAuth.createUserWithEmailAndPassword(email, password)

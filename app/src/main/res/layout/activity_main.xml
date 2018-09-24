@@ -21,12 +21,13 @@ tools:context=".MainActivity">
     <RelativeLayout
         android:id="@+id/container_id"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-    <!--<fragment-->
-        <!--android:name="com.foodiefriends.klevy1.foodiefriends.RestaurantListFragment"-->
-        <!--android:id="@+id/restaurant_list_fragment"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent" />-->
+        android:layout_height="match_parent" >
+        <fragment
+            android:name="com.foodiefriends.klevy1.foodiefriends.RestaurantListFragment"
+            android:id="@+id/restaurant_list_fragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </RelativeLayout>
 
 </LinearLayout>
 
