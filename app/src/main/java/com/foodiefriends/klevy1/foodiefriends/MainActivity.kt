@@ -50,8 +50,6 @@ class MainActivity : AppCompatActivity() {
         // Setup toolbar on UI
         setSupportActionBar(toolbar)
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
-//        val fragment : Fragment = RestaurantListFragment()
-//        this.supportFragmentManager.beginTransaction().replace(R.id.container_id, fragment).commit()
 
 
     }
