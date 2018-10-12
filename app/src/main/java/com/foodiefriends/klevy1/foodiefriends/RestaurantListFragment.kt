@@ -13,7 +13,8 @@ import android.widget.TextView
 class RestaurantListFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val viewManager = LinearLayoutManager(activity)
-        val data = listOf("Main Restaurant 1", "Main Restaurant 2", "Main Restaurant 3", "Main Restaurant 4", "Main Restaurant 5").toTypedArray()
+        val data = listOf("Main Restaurant 1", "Main Restaurant 2", "Main Restaurant 3",
+                "Main Restaurant 4", "Main Restaurant 5", "Main Restaurant 6", "Main Restaurant 7").toTypedArray()
         val viewAdapter = MyAdapter(data)
         val view = inflater.inflate(R.layout.restaurant_list_fragment, container, false)
         view.findViewById<RecyclerView>(R.id.restaurant_list_recycler_view).apply {

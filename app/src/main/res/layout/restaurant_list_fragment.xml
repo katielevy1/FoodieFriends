@@ -19,14 +19,14 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="List View"
+            android:text="@string/list_view"
             android:textAlignment="center" />
         <TextView
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:textAlignment="center"
-            android:text="Map View"/>
+            android:text="@string/map_view"/>
     </LinearLayout>
     <android.support.v7.widget.RecyclerView
         android:id="@+id/restaurant_list_recycler_view"

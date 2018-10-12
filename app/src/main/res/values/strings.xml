@@ -11,4 +11,7 @@
     <string name="title_search">Search</string>
     <string name="title_wishlist">Wishlist</string>
     <string name="title_my_profile">My Profile</string>
+    <string name="map_view">Map View</string>
+    <string name="list_view">List View</string>
+    <string name="title_activity_maps">Map</string>
 </resources>
