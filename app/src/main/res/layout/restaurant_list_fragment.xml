@@ -16,12 +16,14 @@
         android:padding="10dp">
 
         <TextView
+            android:id="@+id/list_toggle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/list_view"
             android:textAlignment="center" />
         <TextView
+            android:id="@+id/map_toggle"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
@@ -34,4 +36,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         xmlns:android="http://schemas.android.com/apk/res/android" />
+    <FrameLayout
+        android:id="@+id/restaurant_list_map_view_holder"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 </LinearLayout>

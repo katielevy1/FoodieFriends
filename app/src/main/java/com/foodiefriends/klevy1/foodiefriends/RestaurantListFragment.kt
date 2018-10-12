@@ -8,21 +8,89 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import android.widget.TextView
+import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
 
-class RestaurantListFragment : Fragment() {
+class RestaurantListFragment : Fragment(), OnMapReadyCallback {
+    var showListView = true
+    private lateinit var mMap: GoogleMap
+    private lateinit var mapFragment: SupportMapFragment
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val viewManager = LinearLayoutManager(activity)
         val data = listOf("Main Restaurant 1", "Main Restaurant 2", "Main Restaurant 3",
                 "Main Restaurant 4", "Main Restaurant 5", "Main Restaurant 6", "Main Restaurant 7").toTypedArray()
         val viewAdapter = MyAdapter(data)
         val view = inflater.inflate(R.layout.restaurant_list_fragment, container, false)
-        view.findViewById<RecyclerView>(R.id.restaurant_list_recycler_view).apply {
-            setHasFixedSize(true)
-            layoutManager = viewManager
-            adapter = viewAdapter
+        val listView = view.findViewById<RecyclerView>(R.id.restaurant_list_recycler_view)
+
+        listView.apply {
+                setHasFixedSize(true)
+                layoutManager = viewManager
+                adapter = viewAdapter
         }
+        if (!showListView) {
+            listView.visibility = View.GONE
+        }
+        setupListenerForViewToggle(view)
         return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        mapFragment = SupportMapFragment()
+        childFragmentManager.beginTransaction().replace(R.id.restaurant_list_map_view_holder, mapFragment).commit()
+        mapFragment.getMapAsync(this)
+    }
+
+    private fun setupListenerForViewToggle(myView : View) {
+        myView.findViewById<TextView>(R.id.list_toggle).setOnClickListener {
+            if (!showListView) {
+                showList(myView)
+                showListView = !showListView
+            }
+        }
+        myView.findViewById<TextView>(R.id.map_toggle).setOnClickListener {
+            if (showListView) {
+                showMap(myView)
+                showListView = !showListView
+            }
+        }
+    }
+
+    private fun showMap(myView: View) {
+        myView.findViewById<RecyclerView>(R.id.restaurant_list_recycler_view)?.visibility = View.GONE
+        myView.findViewById<FrameLayout>(R.id.restaurant_list_map_view_holder)?.visibility = View.VISIBLE
+    }
+
+    private fun showList(myView: View) {
+        myView.findViewById<RecyclerView>(R.id.restaurant_list_recycler_view)?.visibility = View.VISIBLE
+        myView.findViewById<FrameLayout>(R.id.restaurant_list_map_view_holder)?.visibility = View.GONE
+    }
+
+
+    /**
+     * Manipulates the map once available.
+     * This callback is triggered when the map is ready to be used.
+     * This is where we can add markers or lines, add listeners or move the camera. In this case,
+     * we just add a marker near Sydney, Australia.
+     * If Google Play services is not installed on the device, the user will be prompted to install
+     * it inside the SupportMapFragment. This method will only be triggered once the user has
+     * installed Google Play services and returned to the app.
+     */
+    override fun onMapReady(googleMap: GoogleMap) {
+        mMap = googleMap
+
+        // Add a marker in Sydney and move the camera
+        val sydney = LatLng(-34.0, 151.0)
+        mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
     }
 }
 

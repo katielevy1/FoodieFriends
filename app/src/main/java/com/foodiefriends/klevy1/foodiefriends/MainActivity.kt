@@ -50,9 +50,6 @@ class MainActivity : AppCompatActivity() {
         // Setup toolbar on UI
         setSupportActionBar(toolbar)
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
-        // TODO: remove this
-        startActivity(Intent(this@MainActivity, MapsActivity::class.java))
-
     }
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
