@@ -21,6 +21,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/list_view"
+            android:textStyle="bold|italic"
             android:textAlignment="center" />
         <TextView
             android:id="@+id/map_toggle"

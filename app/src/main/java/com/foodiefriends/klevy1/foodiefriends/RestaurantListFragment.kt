@@ -1,5 +1,6 @@
 package com.foodiefriends.klevy1.foodiefriends
 
+import android.graphics.Typeface
 import android.os.Bundle
 import android.support.constraint.ConstraintLayout
 import android.support.v4.app.Fragment
@@ -8,7 +9,6 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.FrameLayout
 import android.widget.TextView
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -16,9 +16,11 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import kotlinx.android.synthetic.main.restaurant_list_fragment.*
+import kotlinx.android.synthetic.main.restaurant_list_fragment.view.*
 
 class RestaurantListFragment : Fragment(), OnMapReadyCallback {
-    var showListView = true
+    private var showListView = true
     private lateinit var mMap: GoogleMap
     private lateinit var mapFragment: SupportMapFragment
 
@@ -28,15 +30,15 @@ class RestaurantListFragment : Fragment(), OnMapReadyCallback {
                 "Main Restaurant 4", "Main Restaurant 5", "Main Restaurant 6", "Main Restaurant 7").toTypedArray()
         val viewAdapter = MyAdapter(data)
         val view = inflater.inflate(R.layout.restaurant_list_fragment, container, false)
-        val listView = view.findViewById<RecyclerView>(R.id.restaurant_list_recycler_view)
 
-        listView.apply {
+        val recyclerView = view.restaurant_list_recycler_view
+        recyclerView.apply {
                 setHasFixedSize(true)
                 layoutManager = viewManager
                 adapter = viewAdapter
         }
         if (!showListView) {
-            listView.visibility = View.GONE
+            restaurant_list_recycler_view.visibility = View.GONE
         }
         setupListenerForViewToggle(view)
         return view
@@ -50,28 +52,32 @@ class RestaurantListFragment : Fragment(), OnMapReadyCallback {
     }
 
     private fun setupListenerForViewToggle(myView : View) {
-        myView.findViewById<TextView>(R.id.list_toggle).setOnClickListener {
+        myView.list_toggle.setOnClickListener {
             if (!showListView) {
-                showList(myView)
+                showList()
                 showListView = !showListView
             }
         }
-        myView.findViewById<TextView>(R.id.map_toggle).setOnClickListener {
+        myView.map_toggle.setOnClickListener {
             if (showListView) {
-                showMap(myView)
+                showMap()
                 showListView = !showListView
             }
         }
     }
 
-    private fun showMap(myView: View) {
-        myView.findViewById<RecyclerView>(R.id.restaurant_list_recycler_view)?.visibility = View.GONE
-        myView.findViewById<FrameLayout>(R.id.restaurant_list_map_view_holder)?.visibility = View.VISIBLE
+    private fun showMap() {
+        restaurant_list_recycler_view.visibility = View.GONE
+        restaurant_list_map_view_holder.visibility = View.VISIBLE
+        list_toggle.setTypeface(null, Typeface.NORMAL)
+        map_toggle.setTypeface(null, Typeface.BOLD_ITALIC)
     }
 
-    private fun showList(myView: View) {
-        myView.findViewById<RecyclerView>(R.id.restaurant_list_recycler_view)?.visibility = View.VISIBLE
-        myView.findViewById<FrameLayout>(R.id.restaurant_list_map_view_holder)?.visibility = View.GONE
+    private fun showList() {
+        restaurant_list_recycler_view.visibility = View.VISIBLE
+        restaurant_list_map_view_holder.visibility = View.GONE
+        list_toggle.setTypeface(null, Typeface.BOLD_ITALIC)
+        map_toggle.setTypeface(null, Typeface.NORMAL)
     }
 
 
