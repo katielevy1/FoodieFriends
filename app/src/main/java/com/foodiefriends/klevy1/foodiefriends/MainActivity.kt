@@ -1,5 +1,6 @@
 package com.foodiefriends.klevy1.foodiefriends
 
+import android.app.Activity
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -12,6 +13,12 @@ import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.activity_main.*
+import com.google.android.gms.location.places.ui.PlacePicker
+import com.google.android.gms.location.places.Place
+
+
+
+
 
 
 class MainActivity : AppCompatActivity() {
@@ -28,24 +35,24 @@ class MainActivity : AppCompatActivity() {
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance()
         mFirebaseUser = mAuth.currentUser
-        if (mFirebaseUser == null) {
-            // User is not signed-in so launch sign-in activity
-            startActivity(Intent(this@MainActivity, SignInActivity::class.java))
-            finish()
-            return
-        } else {
-            mUsername = mFirebaseUser?.displayName
-        }
+//        if (mFirebaseUser == null) {
+//            // User is not signed-in so launch sign-in activity
+//            startActivity(Intent(this@MainActivity, SignInActivity::class.java))
+//            finish()
+//            return
+//        } else {
+//            mUsername = mFirebaseUser?.displayName
+//        }
 
-        // listener to take user back to sign-in screen
-        mAuth.addAuthStateListener { firebaseAuth ->
-            val firebaseUser = firebaseAuth.currentUser
-            if (firebaseUser == null) {
-                // launch sign in activity
-                startActivity(Intent(this, SignInActivity::class.java))
-                finish()
-            }
-        }
+//        // listener to take user back to sign-in screen
+//        mAuth.addAuthStateListener { firebaseAuth ->
+//            val firebaseUser = firebaseAuth.currentUser
+//            if (firebaseUser == null) {
+//                // launch sign in activity
+//                startActivity(Intent(this, SignInActivity::class.java))
+//                finish()
+//            }
+//        }
 
         // Setup toolbar on UI
         setSupportActionBar(toolbar)
@@ -57,6 +64,7 @@ class MainActivity : AppCompatActivity() {
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_search -> {
+                launchPlacePicker()
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_wishlist -> {
@@ -67,6 +75,22 @@ class MainActivity : AppCompatActivity() {
             }
         }
         false
+    }
+
+    private fun launchPlacePicker() {
+        val builder = PlacePicker.IntentBuilder()
+
+        startActivityForResult(builder.build(this), PLACE_PICKER_REQUEST)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (requestCode == PLACE_PICKER_REQUEST) {
+            if (resultCode == Activity.RESULT_OK) {
+                val place = PlacePicker.getPlace(this, data)
+                val toastMsg = String.format("Place: %s", place.name)
+                Toast.makeText(this, toastMsg, Toast.LENGTH_LONG).show()
+            }
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -108,4 +132,7 @@ class MainActivity : AppCompatActivity() {
                 }
     }
 
+    companion object {
+        const val PLACE_PICKER_REQUEST = 1
+    }
 }

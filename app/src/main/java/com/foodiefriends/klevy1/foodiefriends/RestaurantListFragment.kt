@@ -1,15 +1,19 @@
 package com.foodiefriends.klevy1.foodiefriends
 
+import android.content.Context
 import android.graphics.Typeface
 import android.os.Bundle
 import android.support.constraint.ConstraintLayout
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import com.google.android.gms.location.places.GeoDataClient
+import com.google.android.gms.location.places.Places
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -92,11 +96,31 @@ class RestaurantListFragment : Fragment(), OnMapReadyCallback {
      */
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
+        val geoDataClient: GeoDataClient = context?.let { Places.getGeoDataClient(it) } ?: return
+        val nobu = "5581544c6b78ffe1f9a37c00bf27c435c18b8990"
+//        geoDataClient.getPlaceById(nobu).addOnCompleteListener { task ->
+//            if(task.isSuccessful) {
+//                val places = task.result
+//                val myPlace = places?.get(0)
+//                Log.i(GooglePlaces.TAG, "Place found: " + myPlace?.name)
+//                val latLng = myPlace?.latLng
+//                latLng?.let {
+//                    mMap.addMarker(MarkerOptions().position(latLng).title(myPlace.name.toString()))
+//                    mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng))
+//                }
+//                places?.release()
+//
+//            } else {
+//                Log.e(GooglePlaces.TAG, "Place not found.")
+//            }
+//        }
+
+
 
         // Add a marker in Sydney and move the camera
-        val sydney = LatLng(-34.0, 151.0)
-        mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+//        val sydney = LatLng(-34.0, 151.0)
+//        mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
+//        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
     }
 }
 
