@@ -1,25 +1,21 @@
-package com.foodiefriends.klevy1.foodiefriends
+package com.foodiefriends.klevy1.foodiefriends.Fragments
 
-import android.content.Context
 import android.graphics.Typeface
 import android.os.Bundle
 import android.support.constraint.ConstraintLayout
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import com.foodiefriends.klevy1.foodiefriends.R
 import com.google.android.gms.location.places.GeoDataClient
 import com.google.android.gms.location.places.Places
-import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MarkerOptions
 import kotlinx.android.synthetic.main.restaurant_list_fragment.*
 import kotlinx.android.synthetic.main.restaurant_list_fragment.view.*
 
@@ -136,7 +132,7 @@ class MyAdapter(private val myDataset: Array<String>) :
 
     // Create new views (invoked by the layout manager)
     override fun onCreateViewHolder(parent: ViewGroup,
-                                    viewType: Int): MyAdapter.MyViewHolder {
+                                    viewType: Int): MyViewHolder {
         // create a new view
         val textView = LayoutInflater.from(parent.context)
                 .inflate(R.layout.restaurant_item, parent, false) as ConstraintLayout

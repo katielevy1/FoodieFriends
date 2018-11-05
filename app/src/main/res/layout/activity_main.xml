@@ -30,7 +30,7 @@ tools:context=".MainActivity">
 
             <fragment
                 android:id="@+id/restaurant_list_fragment"
-                android:name="com.foodiefriends.klevy1.foodiefriends.RestaurantListFragment"
+                android:name="com.foodiefriends.klevy1.foodiefriends.Fragments.ProfileFragment"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
         </RelativeLayout>

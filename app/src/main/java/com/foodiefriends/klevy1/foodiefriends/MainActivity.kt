@@ -2,6 +2,7 @@ package com.foodiefriends.klevy1.foodiefriends
 
 import android.app.Activity
 import android.content.Intent
+import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
@@ -10,6 +11,7 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
+import com.foodiefriends.klevy1.foodiefriends.Fragments.ProfileFragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.activity_main.*
@@ -21,7 +23,8 @@ import com.google.android.gms.location.places.Place
 
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), ProfileFragment.OnFragmentInteractionListener {
+
 
     private lateinit var mAuth : FirebaseAuth
     private var mFirebaseUser: FirebaseUser? = null
@@ -107,6 +110,10 @@ class MainActivity : AppCompatActivity() {
             }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    override fun onFragmentInteraction(uri: Uri) {
+        // Interact with fragment
     }
 
     fun getData() : List<String> {
