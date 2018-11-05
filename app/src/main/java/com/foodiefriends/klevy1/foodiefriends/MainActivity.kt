@@ -10,8 +10,11 @@ import android.support.v4.app.Fragment
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.Toast
+import com.foodiefriends.klevy1.foodiefriends.FragmentName.*
 import com.foodiefriends.klevy1.foodiefriends.Fragments.ProfileFragment
+import com.foodiefriends.klevy1.foodiefriends.Fragments.RestaurantListFragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.activity_main.*
@@ -20,7 +23,9 @@ import com.google.android.gms.location.places.Place
 
 
 
-
+enum class FragmentName {
+    HOME, PROFILE
+}
 
 
 class MainActivity : AppCompatActivity(), ProfileFragment.OnFragmentInteractionListener {
@@ -60,10 +65,12 @@ class MainActivity : AppCompatActivity(), ProfileFragment.OnFragmentInteractionL
         // Setup toolbar on UI
         setSupportActionBar(toolbar)
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+        switchFragment(HOME)
     }
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.navigation_home -> {
+                switchFragment(HOME)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_search -> {
@@ -74,10 +81,22 @@ class MainActivity : AppCompatActivity(), ProfileFragment.OnFragmentInteractionL
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_my_profile -> {
+                switchFragment(PROFILE)
                 return@OnNavigationItemSelectedListener true
             }
         }
         false
+    }
+
+    private fun switchFragment(fragmentName: FragmentName) {
+        val fragment = when(fragmentName) {
+            HOME -> RestaurantListFragment()
+            PROFILE -> ProfileFragment()
+        }
+        val fragmentManager = supportFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.fragment_container, fragment)
+        fragmentTransaction.commit()
     }
 
     private fun launchPlacePicker() {
