@@ -26,8 +26,8 @@ class RestaurantListFragment : Fragment(), OnMapReadyCallback {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val viewManager = LinearLayoutManager(activity)
-        val data = listOf("Main Restaurant 1", "Main Restaurant 2", "Main Restaurant 3",
-                "Main Restaurant 4", "Main Restaurant 5", "Main Restaurant 6", "Main Restaurant 7").toTypedArray()
+        val data = listOf("Searsucker", "Craft & Commerce", "The Cottage",
+                "Sushi Ota", "Herb & Wood", "Thai Time 3", "Java Earth").toTypedArray()
         val viewAdapter = MyAdapter(data)
         val view = inflater.inflate(R.layout.restaurant_list_fragment, container, false)
 
