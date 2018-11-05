@@ -1,4 +1,4 @@
-package com.foodiefriends.klevy1.foodiefriends.Fragments
+package com.foodiefriends.klevy1.foodiefriends.pageFragments
 
 import android.content.Context
 import android.net.Uri

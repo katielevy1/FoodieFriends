@@ -6,21 +6,17 @@ import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
-import android.support.v4.app.Fragment
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
 import android.widget.Toast
 import com.foodiefriends.klevy1.foodiefriends.FragmentName.*
-import com.foodiefriends.klevy1.foodiefriends.Fragments.ProfileFragment
-import com.foodiefriends.klevy1.foodiefriends.Fragments.RestaurantListFragment
+import com.foodiefriends.klevy1.foodiefriends.pageFragments.ProfileFragment
+import com.foodiefriends.klevy1.foodiefriends.pageFragments.RestaurantListFragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.activity_main.*
 import com.google.android.gms.location.places.ui.PlacePicker
-import com.google.android.gms.location.places.Place
-
 
 
 enum class FragmentName {

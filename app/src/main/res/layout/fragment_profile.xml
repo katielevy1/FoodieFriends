@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".Fragments.ProfileFragment"
+    tools:context=".pageFragments.ProfileFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
@@ -87,7 +87,7 @@
 </LinearLayout>
     <fragment
         android:id="@+id/restaurant_list_fragment"
-        android:name="com.foodiefriends.klevy1.foodiefriends.Fragments.RestaurantListFragment"
+        android:name="com.foodiefriends.klevy1.foodiefriends.pageFragments.RestaurantListFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
