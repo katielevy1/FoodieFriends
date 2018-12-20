@@ -20,7 +20,7 @@ import com.google.android.gms.location.places.ui.PlacePicker
 
 
 enum class FragmentName {
-    HOME, PROFILE
+    HOME, PROFILE, WISHLIST
 }
 
 
@@ -74,6 +74,7 @@ class MainActivity : AppCompatActivity(), ProfileFragment.OnFragmentInteractionL
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_wishlist -> {
+                switchFragment(WISHLIST)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_my_profile -> {
@@ -87,7 +88,8 @@ class MainActivity : AppCompatActivity(), ProfileFragment.OnFragmentInteractionL
     private fun switchFragment(fragmentName: FragmentName) {
         val fragment = when(fragmentName) {
             HOME -> RestaurantListFragment()
-            PROFILE -> ProfileFragment()
+            PROFILE -> ProfileFragment.newInstance("fake profile id")
+            WISHLIST -> RestaurantListFragment()
         }
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
