@@ -2,20 +2,18 @@ package com.foodiefriends.klevy1.foodiefriends.pageFragments
 
 import android.graphics.Typeface
 import android.os.Bundle
-import android.support.constraint.ConstraintLayout
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import com.foodiefriends.klevy1.foodiefriends.apdapter.RestaurantListAdapter
 import com.foodiefriends.klevy1.foodiefriends.R
-import com.google.android.gms.location.places.GeoDataClient
-import com.google.android.gms.location.places.Places
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
 import kotlinx.android.synthetic.main.restaurant_list_fragment.*
 import kotlinx.android.synthetic.main.restaurant_list_fragment.view.*
 
@@ -28,7 +26,7 @@ class RestaurantListFragment : Fragment(), OnMapReadyCallback {
         val viewManager = LinearLayoutManager(activity)
         val data = listOf("Searsucker", "Craft & Commerce", "The Cottage",
                 "Sushi Ota", "Herb & Wood", "Thai Time 3", "Java Earth").toTypedArray()
-        val viewAdapter = MyAdapter(data)
+        val viewAdapter = RestaurantListAdapter(data)
         val view = inflater.inflate(R.layout.restaurant_list_fragment, container, false)
 
         val recyclerView = view.restaurant_list_recycler_view
@@ -92,8 +90,9 @@ class RestaurantListFragment : Fragment(), OnMapReadyCallback {
      */
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
-        val geoDataClient: GeoDataClient = context?.let { Places.getGeoDataClient(it) } ?: return
-        val nobu = "5581544c6b78ffe1f9a37c00bf27c435c18b8990"
+        addMarkerOnMap(googleMap = mMap, name = "test", lat = 37.4233438, longitude = -122.0728817)
+//        val geoDataClient: GeoDataClient = context?.let { Places.getGeoDataClient(it) } ?: return
+//        val nobu = "ChIJTTePWlpT2YARQlYBgNZDN7Q"
 //        geoDataClient.getPlaceById(nobu).addOnCompleteListener { task ->
 //            if(task.isSuccessful) {
 //                val places = task.result
@@ -118,35 +117,10 @@ class RestaurantListFragment : Fragment(), OnMapReadyCallback {
 //        mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
 //        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
     }
-}
 
-class MyAdapter(private val myDataset: Array<String>) :
-        RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
-
-    // Provide a reference to the views for each data item
-    // Complex data items may need more than one view per item, and
-    // you provide access to all the views for a data item in a view holder.
-    // Each data item is just a string in this case that is shown in a TextView.
-    class MyViewHolder(val view: ConstraintLayout) : RecyclerView.ViewHolder(view)
-
-
-    // Create new views (invoked by the layout manager)
-    override fun onCreateViewHolder(parent: ViewGroup,
-                                    viewType: Int): MyViewHolder {
-        // create a new view
-        val textView = LayoutInflater.from(parent.context)
-                .inflate(R.layout.restaurant_item, parent, false) as ConstraintLayout
-        // set the view's size, margins, paddings and layout parameters
-        return MyViewHolder(textView)
+    private fun addMarkerOnMap(googleMap: GoogleMap, name: String, lat: Double, longitude: Double) {
+        googleMap.addMarker(MarkerOptions()
+                .position(LatLng(lat, longitude))
+                .title(name))
     }
-
-    // Replace the contents of a view (invoked by the layout manager)
-    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        // - get element from your dataset at this position
-        // - replace the contents of the view with that element
-        holder.view.findViewById<TextView>(R.id.restaurant_name).text = myDataset[position]
-    }
-
-    // Return the size of your dataset (invoked by the layout manager)
-    override fun getItemCount() = myDataset.size
 }
